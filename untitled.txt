@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FutureMe</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #00c6ff;
+      color: #fff;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 2rem;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>FutureMe</h1>
+  <p>তোমার ভবিষ্যৎ জানতে নাম অথবা জন্মতারিখ দাও</p>
+  <input type="text" id="username" placeholder="তোমার নাম বা জন্মতারিখ" />
+  <button onclick="predictFuture()">ভবিষ্যৎ দেখাও</button>  <div class="result" id="result"></div>  <script>
+    const moods = ["Creative Hacker", "Dreamy Coder", "Digital Artist", "Mystic Thinker"];
+    const colors = ["Neon Blue", "Purple Rain", "Sunset Orange", "Mystery Black"];
+    const careers = ["Anime Director", "Time Traveler Coder", "Digital Magician", "Cyber Spy"];
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function predictFuture() {
+      const name = document.getElementById("username").value.trim();
+      if (!name) return alert("নাম বা জন্মতারিখ লিখো!");
+
+      const mood = getRandomItem(moods);
+      const color = getRandomItem(colors);
+      const number = Math.floor(Math.random() * 100);
+      const career = getRandomItem(careers);
+
+      const timeline = `
+        <ul style="text-align: left">
+          <li><strong>2026:</strong> তুমি একটি অ্যানিমেশন ইউটিউব চ্যানেল খুলবে!</li>
+          <li><strong>2030:</strong> তুমি রহস্যময় কিছু আবিষ্কার করবে।</li>
+          <li><strong>2042:</strong> তুমি ${career} হিসেবে পরিচিত হবে।</li>
+        </ul>
+      `;
+
+      document.getElementById("result").innerHTML = `
+        <h2>${name}, তোমার ভবিষ্যৎ:</h2>
+        ${timeline}
+        <p><strong>Today's Mood:</strong> ${mood}</p>
+        <p><strong>Lucky Color:</strong> ${color}</p>
+        <p><strong>Lucky Number:</strong> ${number}</p>
+        <p><strong>Spin Result:</strong> ${career}</p>
+      `;
+    }
+  </script></body>
+</html>
